@@ -1,23 +1,33 @@
 # UnveilPass for WordPress
 
-Zero-knowledge password manager integration for WordPress. Sign in with UnveilPass (OIDC SSO), credential management via Agent Gateway, 2FA enforcement and security dashboard.
+Zero-knowledge password manager integration for WordPress.
 
-## Features
+## Free Features
+
+- **Password Generator** — Dashboard widget with length, character toggles and strength indicator (12 chars max)
+- **Admin Bar Button** — Quick password generation from anywhere in WordPress admin
+- **REST API** — `GET /wp-json/unveilpass/v1/generate?length=12`
+
+## Pro Features
 
 - **Sign in with UnveilPass** — OIDC SSO button on wp-login.php with PKCE (S256)
 - **Auto-create users** — optionally create WordPress accounts for new UnveilPass users
 - **2FA enforcement** — block direct password login for administrators
 - **Agent Gateway** — `unveilpass_get_credential($entry_id)` helper for deployment scripts
 - **Security dashboard** — admin/editor login history and method tracking
+- **Extended generator** — up to 128 characters
 
 ## Installation
 
 1. Download and upload to `/wp-content/plugins/unveilpass/`
 2. Activate in WordPress admin
 3. Go to **Settings > UnveilPass**
-4. Configure your Server URL, Client ID and Client Secret
 
-### Getting Client Credentials
+### Free Setup
+
+No configuration needed. The password generator widget appears on your dashboard automatically.
+
+### Pro Setup
 
 1. Log in to [UnveilPass](https://unveilpass.com)
 2. Go to **Manager Console > Applications**
@@ -28,7 +38,6 @@ Zero-knowledge password manager integration for WordPress. Sign in with UnveilPa
 ## Agent Gateway Usage
 
 ```php
-// In your theme or plugin code:
 $cred = unveilpass_get_credential('your-entry-uuid');
 if ($cred) {
     $db_user = $cred['username'];
@@ -40,7 +49,7 @@ if ($cred) {
 
 - WordPress 5.6+
 - PHP 7.4+
-- UnveilPass Pro plan (for SSO and Agent Gateway)
+- UnveilPass Pro plan (for SSO, Agent Gateway and 2FA enforcement)
 
 ## License
 
